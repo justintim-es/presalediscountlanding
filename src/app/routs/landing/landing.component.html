@@ -1,0 +1,43 @@
+<section class="hero is-halfheight is-primary is-bold" [@heroHalfSlide]="topState | async" *ngIf="isTop | async">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title has-text-danger is-size-1" @enterFromTopText [@electrocutePresaleDiscount]="PDState | async">presale.discount</p>
+        </div>
+    </div>
+</section>
+<section class="hero is-halfheight is-primary is-bold" [@heroHalfSlide]="bottomState | async" *ngIf="isBottom | async">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title has-text-danger is-size-1" [@electrocutePresaleDiscount]="PDState | async">presale.discount</p>
+        </div>
+    </div>
+</section>
+<mat-toolbar color="accent">
+    <button mat-icon-button>
+        <mat-icon class="has-text-primary">monitor</mat-icon>
+    </button>
+    <span class="toolbar-spacer"></span>
+    <button mat-button class="is-size-4" routerLink="/register">
+        <strong class="has-text-primary">
+            register shop
+        </strong>
+    </button>
+</mat-toolbar>
+<section class="hero is-halfheight is-primary is-bold" [@heroHalfSlide]="topBelowState | async" *ngIf="isTopBelow | async">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title has-text-danger is-size-1">
+                {{ firstBelowSlideValue | async }}
+            </p>
+        </div>
+    </div>
+</section>
+<section class="hero is-halfheight is-primary is-bold" [@heroHalfSlide]="bottomBelowState | async" *ngIf="isBottomBelow | async">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title has-text-danger is-size-1">
+                {{ secondBelowSlideValue | async }}
+            </p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,27 @@
+<mat-toolbar color="accent" >
+    <button mat-icon-button routerLink="/">
+        <mat-icon class="has-text-primary">
+            arrow_back
+        </mat-icon>
+    </button>
+</mat-toolbar>
+<section class="hero is-fullheight-with-navbar is-primary is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title has-text-danger" @enterFromTopText>Register Shop</p>
+            <mat-form-field style="min-width: 100%;" color="warn" @enterFromLeft>
+                <mat-label>Company Name </mat-label>
+                <input matInput />
+            </mat-form-field>
+            <mat-form-field style="min-width: 100%;" color="warn" @enterFromRight>
+                <mat-label>E-Mail </mat-label>
+                <input matInput />
+            </mat-form-field>
+            <mat-form-field style="min-width: 100%;" color="warn" @enterFromLeft>
+                <mat-label>Password </mat-label>
+                <input matInput />
+            </mat-form-field>
+            <button mat-raised-button color="warn" style="min-width: 100%" class="has-text-primary">register</button>
+        </div>
+    </div>
+</section>
