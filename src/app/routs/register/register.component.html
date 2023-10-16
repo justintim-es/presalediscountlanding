@@ -11,17 +11,21 @@
             <p class="title has-text-danger" @enterFromTopText>Register Shop</p>
             <mat-form-field style="min-width: 100%;" color="warn" @enterFromLeft>
                 <mat-label>Company Name </mat-label>
-                <input matInput />
+                <input matInput [(ngModel)]="companyName" [formControl]="companyNameFormControl" />
             </mat-form-field>
             <mat-form-field style="min-width: 100%;" color="warn" @enterFromRight>
                 <mat-label>E-Mail </mat-label>
-                <input matInput />
+                <input matInput [(ngModel)]="email" [formControl]="emailFormControl" />
             </mat-form-field>
             <mat-form-field style="min-width: 100%;" color="warn" @enterFromLeft>
-                <mat-label>Password </mat-label>
-                <input matInput />
+                <mat-label>First Password </mat-label>
+                <input matInput [(ngModel)]="firstPassword" [formControl]="firstPasswordFormControl" />
             </mat-form-field>
-            <button mat-raised-button color="warn" style="min-width: 100%" class="has-text-primary">register</button>
+            <mat-form-field style="min-width: 100%;" color="warn" @enterFromRight>
+                <mat-label>Second Password </mat-label>
+                <input matInput [(ngModel)]="secondPassword" [formControl]="secondPasswordFormControl" />
+            </mat-form-field>
+            <button mat-raised-button (click)="register()" color="warn" style="min-width: 100%" class="has-text-primary" @enterFromBottom>register</button>
         </div>
     </div>
 </section>

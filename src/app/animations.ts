@@ -42,6 +42,17 @@ export const enterFromTopText = trigger('enterFromTopText', [
         }))
     ])
 ])
+export const enterFromBottom = trigger('enterFromBottom', [
+    transition(':enter', [
+        style({
+            transform: 'translateY(100%)',
+            opacity: 0,
+        }), animate(1000, style({
+            transform: 'translateY(0)',
+            opacity: 1
+        }))
+    ])
+])
 export const electrocutePresaleDiscount = trigger('electrocutePresaleDiscount', [
     state('visible', style({
         opacity: 1

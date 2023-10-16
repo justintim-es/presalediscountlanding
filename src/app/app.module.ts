@@ -17,6 +17,8 @@ import { RegisterComponent } from './routs/register/register.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterService } from './redux/register/register.service';
+import { registerReducer } from './redux/register/reducer';
 
 @NgModule({
   declarations: [
@@ -35,10 +37,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({
-      landingReducer: landingReducer
+      landingReducer: landingReducer,
+      registerReducer: registerReducer
     }, {}),
     EffectsModule.forRoot([
-      LandingService
+      LandingService,
+      RegisterService
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
