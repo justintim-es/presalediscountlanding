@@ -19,12 +19,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterService } from './redux/register/register.service';
 import { registerReducer } from './redux/register/reducer';
+import { PleaseComponent } from './routs/please/please.component';
+import { unexpectedReducer } from './redux/unexpected/reducer';
+import { UnexpectedComponent } from './routs/unexpected/unexpected.component';
+import { UnexpectedService } from './redux/unexpected/unexpected.service';
+import { confirmReducer } from './redux/confirm/reducer';
+import { ConfirmService } from './redux/confirm/confirm.service';
+import { ConfirmComponent } from './routs/confirm/confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
-    RegisterComponent
+    RegisterComponent,
+    PleaseComponent,
+    UnexpectedComponent,
+    ConfirmComponent
   ],
   imports: [
     MatInputModule,
@@ -37,12 +47,16 @@ import { registerReducer } from './redux/register/reducer';
     AppRoutingModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({
+      unexpectedReducer: unexpectedReducer,
       landingReducer: landingReducer,
-      registerReducer: registerReducer
+      registerReducer: registerReducer,
+      confirmReducer: confirmReducer
     }, {}),
     EffectsModule.forRoot([
       LandingService,
-      RegisterService
+      UnexpectedService,
+      RegisterService,
+      ConfirmService
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],

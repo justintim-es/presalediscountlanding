@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { electrocutePresaleDiscount, enterFromTopText, heroHalfSlide } from 'src/app/animations';
 import { IDispatch } from 'src/app/redux/interfaces';
-import { RDX_LANDING_HERO_HALF_SLIDE_ONE, RDX_LANDING_INIT } from 'src/app/redux/landing/actions';
+import { RDX_LANDING_HERO_HALF_SLIDE_ONE, RDX_LANDING_INIT, RDX_LANDING_PRESALE_DISCOUNT_IS_ALIVE_FALSE } from 'src/app/redux/landing/actions';
 import { getLandingBottomBelowState, getLandingBottomState, getLandingFirstBelowSlideValue, getLandingIsBottom, getLandingIsBottomBelow, getLandingIsTop, getLandingIsTopBelow, getLandingPDState, getLandingSecondBelowSlideValue, getLandingTopBelowState, getLandingTopState } from 'src/app/redux/landing/selectors';
 
 @Component({
@@ -16,7 +16,7 @@ import { getLandingBottomBelowState, getLandingBottomState, getLandingFirstBelow
     electrocutePresaleDiscount
   ]
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, OnDestroy {
   PDState: Observable<string>;
   topState: Observable<string>;
   bottomState: Observable<string>;
@@ -50,5 +50,10 @@ export class LandingComponent implements OnInit {
     // this.store.dispatch<IDispatch<any>>({
     //   type: RDX_LANDING_HERO_HALF_SLIDE_ONE
     // })
+  }
+  ngOnDestroy(): void {
+    this.store.dispatch<IDispatch<any>>({
+      type: RDX_LANDING_PRESALE_DISCOUNT_IS_ALIVE_FALSE
+    })
   }
 }

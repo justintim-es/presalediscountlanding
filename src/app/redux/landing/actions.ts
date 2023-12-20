@@ -36,3 +36,11 @@ export const RDX_LANDING_PRESALE_DISCOUNT_ELECTROCUTE_ON = 'RDX_LANDING_PRESALE_
 export const rdxLandingPresaleDiscountElectrocuteOn = createAction(
     RDX_LANDING_PRESALE_DISCOUNT_ELECTROCUTE_ON
 )
+export const RDX_LANDING_PRESALE_DISCOUNT_IS_ALIVE_FALSE = 'RDX_LANDING_PRESALE_DISCOUNT_IS_ALIVE_FALSE';
+export const rdxLandingPresaleDiscountIsAliveFalse = createAction(
+    RDX_LANDING_PRESALE_DISCOUNT_IS_ALIVE_FALSE 
+)
+export const RDX_LANDING_PRESALE_DISCOUNT_NOTHING = 'RDX_LANDING_PRESALE_DISCOUNT_NOTHING';
+export const rdxLandingPresaleDiscountNothing = createAction(
+    RDX_LANDING_PRESALE_DISCOUNT_NOTHING
+)

@@ -48,3 +48,7 @@ export const getLandingSecondBelowSlideValue = createSelector(
     getLandingFeatureState,
     state => state.secondBelowSlideValue
 )
+export const getLandingIsAlive = createSelector(
+    getLandingFeatureState,
+    state => state.isAlive
+)

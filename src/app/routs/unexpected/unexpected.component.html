@@ -1,0 +1,18 @@
+<section class="hero is-fullheight is-white is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered" *ngIf="!(isFetchSuccess | async)">
+            <p class="title has-text-primary">Oeps!</p>
+            <p class="subtitle has-text-primary">Er is iets verkeerd gegaan</p>
+            <mat-form-field style="width: 100%;">
+                <mat-label>Wat was u aan het proberen?</mat-label>
+                <textarea matInput rows="4"></textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary" class="has-text-white" style="width: 100%;" (click)="fetch()" *ngIf="!(isFetch | async)">versturen</button>
+            <div class="spinner spinner-border spinner-border-sm has-text-primary" *ngIf="isFetch | async"></div>
+        </div>
+        <div class="container has-text-centered" *ngIf="isFetchSuccess | async">
+            <p class="title has-text-primary">Uw error is verzonden</p>
+            <p class="subtitle has-text-primary">Wij zullen met uw error aan de slag gaan om deze te repareren</p>
+        </div>
+    </div>
+</section>

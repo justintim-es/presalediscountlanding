@@ -11,7 +11,23 @@ export const getRegisterIsFetchSuccess = createSelector(
     getRegisterFeatureState,
     state => state.isFetchSuccess
 )
-export const getRegisterIsFetchError = createSelector(
+export const getRegisterIsEmailFetchError = createSelector(
     getRegisterFeatureState,
-    state => state.isFetchError
+    state => state.isEmailFetchError
+)
+export const getRegisterIsFirstPasswordFetchError = createSelector(
+    getRegisterFeatureState,
+    state => state.isFirstPasswordFetchError
+)
+export const getRegisterIsSecondPasswordFetchError = createSelector(
+    getRegisterFeatureState,
+    state => state.isSecondPasswordFetchError
+)
+export const getRegisterFetchErrorMessage = createSelector(
+    getRegisterFeatureState,
+    state => state.fetchErrorMessage
+)
+export const getRegisterIsRoutePlease = createSelector(
+    getRegisterFeatureState,
+    state => state.isRoutePlease
 )

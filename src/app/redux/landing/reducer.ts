@@ -1,7 +1,8 @@
 import { createReducer, on } from "@ngrx/store";
-import { rdxLandingHeroHalfSlideFour, rdxLandingHeroHalfSlideOne, rdxLandingHeroHalfSlideThree, rdxLandingHeroHalfSlideTwo, rdxLandingPresaleDiscountElectrocuteOff, rdxLandingPresaleDiscountElectrocuteOn } from "./actions";
+import { rdxLandingHeroHalfSlideFour, rdxLandingHeroHalfSlideOne, rdxLandingHeroHalfSlideThree, rdxLandingHeroHalfSlideTwo, rdxLandingInit, rdxLandingPresaleDiscountElectrocuteOff, rdxLandingPresaleDiscountElectrocuteOn, rdxLandingPresaleDiscountIsAliveFalse } from "./actions";
 
 export interface ILandingReducer {
+    isAlive: boolean;
     topState: string;
     bottomState: string;
     topBelowState: string;
@@ -15,6 +16,7 @@ export interface ILandingReducer {
     secondBelowSlideValue: string;
 }
 export const landingInitiail: ILandingReducer = {
+    isAlive: false,
     topState: 'invision',
     bottomState: 'left',
     topBelowState: 'invision',
@@ -29,6 +31,12 @@ export const landingInitiail: ILandingReducer = {
 }
 export const landingReducer = createReducer(
     landingInitiail,
+    on(rdxLandingInit, (state: ILandingReducer) => {
+        return {
+            ...state,
+            isAlive: true
+        }
+    }),
     on(rdxLandingPresaleDiscountElectrocuteOff, (state: ILandingReducer) => {
         return {
             ...state,
@@ -85,6 +93,12 @@ export const landingReducer = createReducer(
         return {
             ...state,
             pdState: 'invisible'
+        }
+    }),
+    on(rdxLandingPresaleDiscountIsAliveFalse, (state: ILandingReducer) => {
+        return {
+            ...state,
+            isAlive: false
         }
     })
 )

@@ -1,31 +1,47 @@
-<mat-toolbar color="accent" >
+<mat-toolbar color="primary" >
     <button mat-icon-button routerLink="/">
-        <mat-icon class="has-text-primary">
+        <mat-icon class="has-text-white">
             arrow_back
         </mat-icon>
     </button>
 </mat-toolbar>
-<section class="hero is-fullheight-with-navbar is-primary is-bold">
+<section class="hero is-fullheight-with-navbar is-white is-bold">
     <div class="hero-body">
         <div class="container has-text-centered">
-            <p class="title has-text-danger" @enterFromTopText>Register Shop</p>
-            <mat-form-field style="min-width: 100%;" color="warn" @enterFromLeft>
+            <p class="title has-text-primary" @enterFromTopText *ngIf="!(isFetchSuccess | async)">Register Shop</p>
+            <mat-form-field style="min-width: 100%;" color="warn" @enterFromLeft *ngIf="!(isFetchSuccess | async)">
                 <mat-label>Company Name </mat-label>
                 <input matInput [(ngModel)]="companyName" [formControl]="companyNameFormControl" />
             </mat-form-field>
-            <mat-form-field style="min-width: 100%;" color="warn" @enterFromRight>
+            <mat-form-field style="min-width: 100%;" color="warn" @enterFromRight *ngIf="!(isFetchSuccess | async)">
                 <mat-label>E-Mail </mat-label>
                 <input matInput [(ngModel)]="email" [formControl]="emailFormControl" />
+                <mat-error *ngIf="emailFormControl.hasError('backend')">
+                    {{ fetchErrorMessage | async }}
+                </mat-error>
             </mat-form-field>
-            <mat-form-field style="min-width: 100%;" color="warn" @enterFromLeft>
+            <mat-form-field style="min-width: 100%;" color="warn" @enterFromLeft *ngIf="!(isFetchSuccess | async)">
                 <mat-label>First Password </mat-label>
-                <input matInput [(ngModel)]="firstPassword" [formControl]="firstPasswordFormControl" />
+                <input matInput [(ngModel)]="firstPassword" [type]="firstHide ? 'password': 'text'" [formControl]="firstPasswordFormControl" [errorStateMatcher]="errorStateMatcher" />
+                <mat-error *ngIf="firstPasswordFormControl.hasError('backend')">
+                    {{ fetchErrorMessage | async }}
+                </mat-error>
+                <button mat-icon-button (click)="firstHide = !firstHide" matSuffix>
+                    <mat-icon  class="has-text-primary">{{firstHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
             </mat-form-field>
-            <mat-form-field style="min-width: 100%;" color="warn" @enterFromRight>
+            <mat-form-field style="min-width: 100%;" color="warn" @enterFromRight *ngIf="!(isFetchSuccess | async)">
                 <mat-label>Second Password </mat-label>
-                <input matInput [(ngModel)]="secondPassword" [formControl]="secondPasswordFormControl" />
+                <input matInput [(ngModel)]="secondPassword" [formControl]="secondPasswordFormControl" [type]="secondHide ? 'password': 'text'" />
+                <mat-error *ngIf="secondPasswordFormControl.hasError('backend')">
+                    {{ fetchErrorMessage | async }}
+                </mat-error>
+                <button mat-icon-button (click)="secondHide = !secondHide" matSuffix>
+                    <mat-icon class="has-text-primary">{{secondHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
             </mat-form-field>
-            <button mat-raised-button (click)="register()" color="warn" style="min-width: 100%" class="has-text-primary" @enterFromBottom>register</button>
+            <button mat-raised-button (click)="register()" color="primary" style="min-width: 100%" class="has-text-white" @enterFromBottom *ngIf="!(isFetch | async) && !(isFetchSuccess | async)">register</button>
+            <div class="spinner spinner-border spinner-border-sm has-text-primary" *ngIf="isFetch | async"></div>
         </div>
     </div>
-</section>
+</section>z
