@@ -1,25 +1,23 @@
 import { createReducer, on } from "@ngrx/store";
-import { rdxConfirmFetch, rdxConfirmFetchError, rdxConfirmFetchSuccess, rdxConfirmIsRouteLoginTrue } from "./actions";
+import { IMainCreateCardFetch, rdxMainCreateCardFetch, rdxMainCreateCardFetchError, rdxMainCreateCardFetchSuccess, rdxMainCreateCardRouteBack } from "./actions";
 
-export interface IConfirmReducer {
+export interface IMainCreateCardReducer {
     isFetch: boolean;
     isFetchSuccess: boolean;
-    onboardLink: string;
     isFetchError: boolean;
-    fetchErrorMessage: string; 
-    isRouteLogin: boolean
+    fetchErrorMessage: string;
+    isRouteBack: boolean;
 }
-export const confirmInitial: IConfirmReducer = {
+export const mainCreateCardInitial: IMainCreateCardReducer = {
     isFetch: false,
     isFetchSuccess: false,
-    onboardLink: '',
     isFetchError: false,
     fetchErrorMessage: '',
-    isRouteLogin: false,
+    isRouteBack: false
 }
-export const confirmReducer = createReducer(
-    confirmInitial,
-    on(rdxConfirmFetch, (state: IConfirmReducer) => {
+export const mainCreateCardReducer = createReducer(
+    mainCreateCardInitial,
+    on(rdxMainCreateCardFetch, (state: IMainCreateCardReducer) => {
         return {
             ...state,
             isFetch: true,
@@ -28,15 +26,14 @@ export const confirmReducer = createReducer(
             fetchErrorMessage: ''
         }
     }),
-    on(rdxConfirmFetchSuccess, (state: IConfirmReducer, action) => {
+    on(rdxMainCreateCardFetchSuccess, (state: IMainCreateCardReducer) => {
         return {
             ...state,
             isFetch: false,
             isFetchSuccess: true,
-            onboardLink: action.payload! 
         }
     }),
-    on(rdxConfirmFetchError, (state: IConfirmReducer, action) => {
+    on(rdxMainCreateCardFetchError, (state: IMainCreateCardReducer, action) => {
         return {
             ...state,
             isFetch: false,
@@ -44,11 +41,10 @@ export const confirmReducer = createReducer(
             fetchErrorMessage: action.payload!
         }
     }),
-    on(rdxConfirmIsRouteLoginTrue, (state: IConfirmReducer, action) => {
+    on(rdxMainCreateCardRouteBack, (state: IMainCreateCardReducer) => {
         return {
             ...state,
-            isRouteLogin: true
+            isRouteBack: true
         }
     })
-
 )

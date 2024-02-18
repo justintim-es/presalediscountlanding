@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button routerLink="/">
+        <mat-icon class="has-text-white">arrow_back</mat-icon>
+    </button>
+</mat-toolbar>
+<section class="hero is-fullheight-with-navbar is-white is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="heading has-text-primary" *ngIf="!(isFetchSuccess | async)">dashboard</p>
+            <p class="title has-text-primary" *ngIf="!(isFetchSuccess | async)">Login</p>
+            <mat-form-field @enterFromLeft style="min-width: 100%;"  *ngIf="!(isFetchSuccess | async)">
+                <mat-label>E-Mail </mat-label>
+                <input matInput [(ngModel)]="email" [formControl]="emailFormControl" [errorStateMatcher]="errorStateMatcher"/>
+            </mat-form-field>
+            <mat-form-field @enterFromRight style="min-width: 100%;"  *ngIf="!(isFetchSuccess | async)">
+                <mat-label>First Password</mat-label>
+                <input matInput placeholder="First Password" [type]="hideFirstPassword ? 'password' : 'text'" [(ngModel)]="firstPassword" [formControl]="firstPasswordFormControl" [errorStateMatcher]="errorStateMatcher" />
+                <button mat-icon-button matSuffix (click)="hideFirstPassword = !hideFirstPassword">
+                    <mat-icon class="has-text-primary">
+                        {{ hideFirstPassword ? 'visibility_off' : 'visibility_on' }}
+                    </mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field @enterFromLeft style="min-width: 100%;" *ngIf="!(isFetchSuccess | async)">
+                <mat-label>Second Password</mat-label>
+                <input matInput placeholder="Second Password" [type]="hideFirstPassword ? 'password' : 'text'"  [(ngModel)]="secondPassword" [formControl]="secondPasswordFormControl" [errorStateMatcher]="errorStateMatcher"/>
+                <mat-error *ngIf="secondPasswordFormControl.hasError('backend')">
+                    {{ fetchErrorMessage | async }}
+                </mat-error>
+                <button mat-icon-button matSuffix (click)="hideFirstPassword = !hideFirstPassword">
+                    <mat-icon class="has-text-primary">
+                        {{ hideFirstPassword ? 'visibility_off' : 'visibility_on' }}
+                    </mat-icon>
+                </button>
+                <mat-error ></mat-error>
+            </mat-form-field>            
+            <button mat-raised-button color="primary" style="min-width: 100%;" class="has-text-white" @enterFromBottom (click)="login()" *ngIf="!(isFetch | async) && !(isFetchSuccess | async)">login</button>
+            <div class="spinner spinner-border spinner-border-sm has-text-primary" *ngIf="isFetch | async"></div>
+        </div>
+    </div>
+</section>

@@ -26,6 +26,20 @@ import { UnexpectedService } from './redux/unexpected/unexpected.service';
 import { confirmReducer } from './redux/confirm/reducer';
 import { ConfirmService } from './redux/confirm/confirm.service';
 import { ConfirmComponent } from './routs/confirm/confirm.component';
+import { LoginDashboardComponent } from './routs/login-dashboard/login-dashboard.component';
+import { loginDashboardReducer } from './redux/login-dashboard/reducer';
+import { LoginDashboardService } from './redux/login-dashboard/login-dashboard.service';
+import { tokenReducer } from './redux/token/reducer';
+import { MainComponent } from './routs/main/main.component';
+import { mainReducer } from './redux/main/reducer';
+import { MainCreateCardComponent } from './routs/main/main-create-card/main-create-card.component';
+import { mainCreateCardReducer } from './redux/main-create-card/reducer';
+import { MainCreateCardService } from './redux/main-create-card/main-create-card.service';
+import { MainService } from './redux/main/main.service';
+import { BuyComponent } from './routs/buy/buy.component';
+import { buyReducer } from './redux/buy/reducer';
+import { BuyService } from './redux/buy/buy.service';
+import { MainEthComponent } from './routs/main/main-eth/main-eth.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +48,12 @@ import { ConfirmComponent } from './routs/confirm/confirm.component';
     RegisterComponent,
     PleaseComponent,
     UnexpectedComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    LoginDashboardComponent,
+    MainComponent,
+    MainCreateCardComponent,
+    BuyComponent,
+    MainEthComponent,
   ],
   imports: [
     MatInputModule,
@@ -50,13 +69,22 @@ import { ConfirmComponent } from './routs/confirm/confirm.component';
       unexpectedReducer: unexpectedReducer,
       landingReducer: landingReducer,
       registerReducer: registerReducer,
-      confirmReducer: confirmReducer
+      confirmReducer: confirmReducer,
+      loginDashboardReducer: loginDashboardReducer,
+      tokenReducer: tokenReducer,
+      mainReducer: mainReducer,
+      mainCreateCardReducer: mainCreateCardReducer,
+      buyReducer: buyReducer
     }, {}),
     EffectsModule.forRoot([
       LandingService,
       UnexpectedService,
       RegisterService,
-      ConfirmService
+      ConfirmService,
+      LoginDashboardService,
+      MainService,
+      MainCreateCardService,
+      BuyService
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],

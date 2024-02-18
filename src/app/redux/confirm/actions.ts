@@ -16,3 +16,7 @@ export const rdxConfirmFetchError = createAction(
     RDX_CONFIRM_FETCH_SUCCESS,
     props<IProps<string>>()
 )
+export const RDX_CONFIRM_IS_ROUTE_LOGIN_TRUE = 'RDX_CONFIRM_IS_ROUTE_LOGIN_TRUE';
+export const rdxConfirmIsRouteLoginTrue = createAction(
+    RDX_CONFIRM_IS_ROUTE_LOGIN_TRUE
+)

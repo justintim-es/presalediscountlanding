@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { createAction } from '@ngrx/store';
-import { RDX_CONFIRM_FETCH_ERROR, RDX_CONFIRM_FETCH_SUCCESS, rdxConfirmFetch } from './actions';
-import { switchMap } from 'rxjs';
+import { RDX_CONFIRM_FETCH_ERROR, RDX_CONFIRM_FETCH_SUCCESS, RDX_CONFIRM_IS_ROUTE_LOGIN_TRUE, rdxConfirmFetch, rdxConfirmFetchSuccess } from './actions';
+import { delay, map, switchMap } from 'rxjs';
 import { aschax } from 'src/app/aschax';
 import { AxiosError } from 'axios';
 import { RDX_UNEXPECTED_IS_TRUE } from '../unexpected/actions';
@@ -40,6 +40,17 @@ export class ConfirmService {
           return disptach;
         }
       }))
+    )
+  })
+  fetchSuccess = createEffect(() => {
+    return this.actions.pipe(
+      ofType(rdxConfirmFetchSuccess),
+      delay(2500),
+      map(ac => {
+        return {
+          type: RDX_CONFIRM_IS_ROUTE_LOGIN_TRUE
+        } 
+      })
     )
   })
 }

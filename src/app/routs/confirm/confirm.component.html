@@ -1,14 +1,14 @@
 <div class="is-clipped">
     <section class="hero is-fullheight is-white is-bold" @enterFromBottom>
         <div class="hero-body">
-            <div class="container has-text-centered" *ngIf="isFetchSuccess | async">
-                <p class="title has-text-primary">Uw E-Mail is bevestigd</p>
-                <p class="subtitle has-text-primary">Zou u voor ons een nieuwe Stripe account kunnen maken?</p>
-                <button mat-raised-button color="primary" class="has-text-white">Account maken</button>
+            <div class="spinner spinner-border has-text-primary" *ngIf="isFetch | async"></div>
+            <div class="container has-text-centered">
+                <p class="title has-text-primary" *ngIf="isFetchSuccess | async">Your e-mail is confirmed</p>
+                <p class="title has-text-primary" *ngIf="isFetchError | async">
+                    {{ fetchErrorMessage | async }}
+                </p>
             </div>
-            <div class="container has-text-centered" *ngIf="(isFetch | async) && !(isFetchSuccess | async)">
-                <div class="spinner spinner-border has-text-primary"></div>
-            </div>
+
         </div>
     </section>
 </div>

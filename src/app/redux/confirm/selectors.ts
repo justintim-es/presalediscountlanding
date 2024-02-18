@@ -19,3 +19,7 @@ export const getConfirmFetchErrorMessage = createSelector(
     getConfirmFeatureSelector,
     state => state.fetchErrorMessage
 )
+export const getConfirmIsRouteLoginTrue = createSelector(
+    getConfirmFeatureSelector,
+    state => state.isRouteLogin
+)

@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+    <button mat-button>
+        <p class="title has-text-white">
+            {{ companyName | async }}
+        </p>
+    </button>
+</mat-toolbar>
+        <section class="hero is-quarter is-white is-bold" *ngFor="let card of (cards | async)">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <p class="title has-text-primary">
+                        {{ '€ ' + (card.value -  card.discount) + ' => € ' + (card.value) }}
+                    </p>
+                </div>
+            </div>
+            <div class="hero-foot">
+                <button mat-raised-button color="primary" class="has-text-white" style="min-width: 100%;">BUY WITH ETH</button>
+            </div>
+        </section>

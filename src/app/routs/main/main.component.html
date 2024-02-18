@@ -1,0 +1,77 @@
+<mat-toolbar color="primary" *ngIf="!(isMenu | async)">
+    <mat-toolbar-row>
+        <button mat-button>
+            <p class="title has-text-white">
+                Dashboard
+            </p>
+        </button>
+        <span class="toolbar-spacer"></span>
+        <button mat-icon-button class="has-text-white"  *ngIf="isMenu | async"  (click)="menuToggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-icon-button class="has-text-white"  *ngIf="!(isMenu | async)" (click)="menuToggle()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <button mat-button>
+            <p class="title is-size-5 has-text-white">
+                Cards
+            </p>
+        </button>
+    </mat-toolbar-row>
+    <mat-toolbar-row routerLink="/main/main-eth">
+        <button mat-button >
+            <p class="title is-size-5 has-text-white">
+                ETH
+            </p>
+        </button>
+    </mat-toolbar-row>
+
+</mat-toolbar>
+<mat-toolbar color="primary" *ngIf="(isMenu | async)">
+        <button mat-button>
+            <p class="title has-text-white">
+                Dashboard
+            </p>
+        </button>
+        <span class="toolbar-spacer"></span>
+        <button mat-icon-button class="has-text-white"  *ngIf="isMenu | async"  (click)="menuToggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-icon-button class="has-text-white"  *ngIf="!(isMenu | async)" (click)="menuToggle()">
+            <mat-icon>close</mat-icon>
+        </button>
+
+</mat-toolbar>
+<section class="hero is-white is-fullheight-with-navbar is-bold">
+    <section class="is-quarter is-white">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title has-text-primary">
+                    <button mat-button color="primary">
+                        <p class="title has-text-primary" routerLink="/main/main-create-card">
+                            Create card
+                        </p>
+                    </button>
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="is-quarter is-white is-bold" *ngFor="let card of (cards | async)">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title has-text-primary">
+                    {{ '€ ' +(card.value - card.discount) + ' => € ' + card.value}}
+                </p>
+            </div>
+        </div>
+    </section>
+    <div class="hero-body" *ngIf="isFetch | async">
+        <div class="container has-text-centered">
+            <div class="spinner spinner-border has-text-primary"></div>
+        </div>
+    </div>
+    <!-- <section class="is-quarter is-white" *ngFor="let card of (cards | async)">
+    </section> -->
+</section>
