@@ -1,0 +1,56 @@
+<mat-toolbar color="accent">
+    <button mat-icon-button routerLink="{{ '/buy/' + shopId }}">
+        <mat-icon class="has-text-black">arrow_back</mat-icon>
+    </button>
+    <span class="toolbar-spacer"></span>
+    <p class="title">
+        {{ shopName | async }}
+    </p>
+</mat-toolbar>
+<section class="hero is-fullheight-with-navbar is-black is-bold">
+    <div class="hero-head p-6">
+        <div class="container has-text-centered">
+            <p class="title has-text-white">
+                {{ '€ ' + (((card | async)!.value / 100) -  ((card | async)!.discount / 100)) + ' => € ' + ((card | async)!.value / 100) }}
+            </p>
+        </div>
+    </div>
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <mat-form-field style="min-width: 100%;" color="accent" @enterFromLeft>
+                    <mat-label>E-Mail</mat-label>
+                    <input matInput formControlName="email" [(ngModel)]="email" [errorStateMatcher]="errorStateMatcher" type="text">
+                </mat-form-field>
+                <mat-form-field style="min-width: 100%;" color="accent" @enterFromRight>
+                    <mat-label>Confirm E-Mail</mat-label>
+                    <input matInput formControlName="confirmEmail" [(ngModel)]="confirmEmail" [errorStateMatcher]="errorStateMatcher" type="text">
+                    <mat-error *ngIf="form.controls['confirmEmail'].hasError('different')">
+                        E-Mails are not the same           
+                    </mat-error>
+                </mat-form-field>
+                <button mat-raised-button style="min-width: 100%;" color="accent" class="has-text-black mb-4" type="submit" *ngIf="!(isProceed | async) && !(isProceedSuccess | async)">buy</button>
+                <div class="spinner spinner-border spinner-border-sm" *ngIf="isProceed | async"></div>
+                <p class="subtitle">You have 60 minutes to complete your order</p> 
+                <!-- <p class="subtitle has-text-right is-size-6" *ngIf="isProceedSuccess | async">
+                   {{ 'one voucher: € ' + (((card | async)!.value / 100) -  ((card | async)!.discount / 100)) }} 
+                </p>
+                <p class="subtitle has-text-right is-size-6" *ngIf="isProceedSuccess | async">
+                    {{ 'transaction fee: € 1'  }} 
+                 </p>
+                 <hr *ngIf="isProceedSuccess | async">
+                 <p class="subtitle has-text-right is-size-6" *ngIf="isProceedSuccess | async">{{ 'You will pay €' + ((((card | async)!.value / 100) -  ((card | async)!.discount / 100)) + 1) + ' for a voucher with a value of €' + ((card | async)!.value / 100) + ', which you can redeem for as long as the shop uses presale.discount '   }} </p>
+                <a *ngIf="isProceedSuccess | async" mat-raised-button style="min-width: 100%;" color="accent" class="has-text-black mb-4">buy</a> -->
+                
+            </form>
+        </div>
+    </div>
+    <div class="hero-foot">
+        <div class="container has-text-centered">
+            <p class="subtitle">If you press the buy button you agree with our terms and conditions and privacy policy.</p>
+            <button mat-button routerLink="/terms">Terms and conditions</button>
+            <button mat-button routerLink="/privacy">Privacy policy</button>
+
+        </div>
+    </div>
+</section>

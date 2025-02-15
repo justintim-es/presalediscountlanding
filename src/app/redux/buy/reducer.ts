@@ -1,6 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { IBuyCard, IBuyCardsFetchSuccess, rdxBuyCardsFetch, rdxBuyCardsFetchError, rdxBuyCardsFetchSuccess } from "./actions";
+import { IBuyCardsFetchSuccess, rdxBuyCardsFetch, rdxBuyCardsFetchError, rdxBuyCardsFetchSuccess } from "./actions";
+import { IBuyCard } from "../interfaces";
 
 export interface IBuyReducer {
     isFetch: boolean;

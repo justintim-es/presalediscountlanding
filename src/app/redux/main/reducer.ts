@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { IMainCardsFetchSuccess, rdxMainCardsFetch, rdxMainCardsFetchSuccess, rdxMainMenuToggle } from "./actions";
+import { IMainCardsFetchSuccess, rdxMainCardsFetch, rdxMainCardsFetchSuccess, rdxMainLogin, rdxMainLoginSuccess, rdxMainMenuToggle } from "./actions";
 
 
 
@@ -8,12 +8,22 @@ export interface IMainReducer {
     isFetch: boolean;
     isFetchSuccess: boolean;
     cards: IMainCardsFetchSuccess[];
+    isLoginFetch: boolean;
+    isLoginFetchSuccess: boolean;
+    login: string;
+    isVisible: boolean;
+    isVisibleFetch: boolean;
 }
 export const mainInitial: IMainReducer = {
     isMenu: true,
     isFetch: false,
     isFetchSuccess: false,
-    cards: []
+    cards: [],
+    isLoginFetch: false,
+    isLoginFetchSuccess: false,
+    isVisible: false,
+    isVisibleFetch: false,
+    login: ''
 }
 export const mainReducer = createReducer(
     mainInitial,
@@ -36,6 +46,21 @@ export const mainReducer = createReducer(
             isFetch: false,
             isFetchSuccess: true,
             cards: action.payload!
+        }
+    }),
+    on(rdxMainLogin, (state: IMainReducer) => {
+        return {
+            ...state,
+            isLoginFetch: true,
+            isLoginFetchSuccess: false
+        }
+    }),
+    on(rdxMainLoginSuccess, (state: IMainReducer, action) => {
+        return {
+            ...state,
+            isLoginFetch: false,
+            isLoginFetchSuccess: true,
+            login: action.payload!
         }
     })
 

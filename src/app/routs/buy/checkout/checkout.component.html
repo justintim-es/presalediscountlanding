@@ -1,0 +1,13 @@
+<section class="hero is-fullheight is-black is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="spinner spinner-border" *ngIf="isFetch | async"></div>
+            <p class="title" *ngIf="isFetchSuccess | async">Your card has been send to your e-mail</p>
+            <p class="subtitle" *ngIf="isFetchError | async">
+                {{ fetchErrorMessage | async }}
+            </p>
+            <button mat-raised-button style="min-width: 100%;" color="accent" *ngIf="!(isResend | async) && ((isFetchSuccess | async) || (isFetchError | async))" (click)="resend()">resend card to your e-mail</button>
+            <div class="spinner spinner-border spinner-border-sm" *ngIf="isResend | async"></div>
+        </div>
+    </div>
+</section>

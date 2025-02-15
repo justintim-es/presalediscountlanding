@@ -25,10 +25,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/custom-theme.scss",
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.css",
-              "./node_modules/bulma/cuschus/css/mystyles.css"
+              "./node_modules/bulma/css/bulma.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": []
           },
@@ -38,7 +38,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",

@@ -1,0 +1,34 @@
+<mat-toolbar color="accent">
+    <button mat-icon-button routerLink="/main">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span class="toolbar-spacer"></span>
+    <button mat-icon-button *ngIf="(carddata | async)!.can_destroy && !(isDelete | async)" (click)="delete()">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <div class="spinner spinner-border spinner-border-sm" *ngIf="isDelete | async"></div>
+</mat-toolbar>
+<section class="hero is-fullheight-with-navbar is-black is-bold">
+    <div class="hero-head p-6" *ngIf="isFetchSuccess | async">
+        <div class="container has-text-centered">
+            <p class="heading is-family-code">sold</p>
+            <p class="title">
+                {{ (carddata | async)!.sold }}
+            </p>
+            <p class="title">Transactions</p>
+            <section class="hero is-black is-bold" *ngFor="let tx of (carddata | async)!.transactions">
+                <p class="title">
+                    {{ (tx.value /  100).toFixed(2) }}
+                </p>
+                <p class="subtitle">
+                    {{ tx.date.toLocaleString() }}
+                </p>
+            </section>
+        </div>
+    </div>
+    <div class="hero-body" *ngIf="isFetch | async">
+        <div class="container has-text-centered">
+            <div class="spinner spinner-border"></div>
+        </div>
+    </div>
+</section>

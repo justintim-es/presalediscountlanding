@@ -6,6 +6,7 @@ export interface IRegisterFetch {
     e_mail: string;
     first_password: string;
     second_password: string;
+    country: string;
 }
 export const RDX_REGISTER_FETCH = 'RDX_REGISTER_FETCH';
 export const rdxRegisterFetch = createAction(

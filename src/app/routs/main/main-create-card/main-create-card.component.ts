@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -6,7 +6,7 @@ import { Observable, SubscriptionLike } from 'rxjs';
 import { enterFromLeft, enterFromRight } from 'src/app/animations';
 import { MyErrorStateMatcher } from 'src/app/error-state-matcher';
 import { IDispatch } from 'src/app/redux/interfaces';
-import { IMainCreateCardFetch, RDX_MAIN_CREATE_CARD_FETCH } from 'src/app/redux/main-create-card/actions';
+import { IMainCreateCardFetch, RDX_MAIN_CREATE_CARD_FETCH, RDX_MAIN_CREATE_CARD_RESET } from 'src/app/redux/main-create-card/actions';
 import { getMainCreateCardFetchErrorMessage, getMainCreateCardIsFetch, getMainCreateCardIsFetchError, getMainCreateCardIsFetchSuccess, getMainCreateCardRouteBack } from 'src/app/redux/main-create-card/selectors';
 
 @Component({
@@ -18,7 +18,7 @@ import { getMainCreateCardFetchErrorMessage, getMainCreateCardIsFetch, getMainCr
     enterFromRight
   ]
 })
-export class MainCreateCardComponent {
+export class MainCreateCardComponent implements OnDestroy {
   value: number;
   discount: number;
 
@@ -69,6 +69,11 @@ export class MainCreateCardComponent {
         value: this.value,
         discount: this.discount
       }
+    })
+  }
+  ngOnDestroy(): void {
+    this.store.dispatch({
+      type: RDX_MAIN_CREATE_CARD_RESET
     })
   }
 }

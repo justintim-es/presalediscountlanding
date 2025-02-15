@@ -1,0 +1,34 @@
+<section class="hero is-fullheight is-black is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered" *ngIf="!(isFetchSuccess | async)">
+            <p class="title">Reset your passwords</p>
+            <form [formGroup]="formgroup" (ngSubmit)="reset()">
+                <mat-form-field style="min-width:100%" color="accent"><mat-label>First Password</mat-label><input [type]="hidefirst? 'password' : 'text'" matInput formControlName="first" [(ngModel)]="first">
+                    <button mat-icon-button matSuffix (click)="hidefirst = !hidefirst">
+                        <mat-icon>
+                            {{ hidefirst ? 'visibility_off' : 'visibility_on'}}
+                        </mat-icon>
+                    </button>
+                    <mat-error *ngIf="formgroup.controls['first'].hasError('backend')">
+                        {{ (fetchError | async)!.message }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field style="min-width:100%" color="accent"><mat-label>Second Password</mat-label><input [type]="hidesecond ? 'password' : 'text'" type="text" matInput formControlName="second" [(ngModel)]="second">
+                    <button mat-icon-button matSuffix (click)="hidesecond = !hidesecond">
+                        <mat-icon>
+                            {{ hidesecond ? 'visibility_off' : 'visibility_on'}}
+                        </mat-icon>
+                    </button>
+                    <mat-error *ngIf="formgroup.controls['second'].hasError('backend')">
+                        {{ (fetchError | async)!.message }}
+                    </mat-error>
+                </mat-form-field>
+                <button mat-raised-button style="min-width: 100%;" color="accent" type="submit" *ngIf="!(isFetch | async)">reset</button>
+                <div class="spinner spinner-border spinner-border-sm" *ngIf="isFetch | async"></div>
+            </form>
+        </div>
+        <div class="container has-text-centered" *ngIf="isFetchSuccess | async">
+            <p class="title">Your passwords have changed.</p>
+        </div>
+    </div>
+</section>

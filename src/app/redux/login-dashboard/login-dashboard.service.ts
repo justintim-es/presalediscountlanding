@@ -37,7 +37,7 @@ export class LoginDashboardService {
       map(ac => {
         return {
           type: RDX_TOKEN_SET,
-          payload: ac.payload
+          payload: ac.payload!.token
         }
       })
     )

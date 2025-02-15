@@ -11,6 +11,10 @@ export const getConfirmIsFetchSuccess = createSelector(
     getConfirmFeatureSelector,
     state => state.isFetchSuccess
 )
+export const getConfirmOnboardLink = createSelector(
+    getConfirmFeatureSelector,
+    state => state.onboardLink
+)
 export const getConfirmIsFetchError = createSelector(
     getConfirmFeatureSelector,
     state => state.isFetchError

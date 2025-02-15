@@ -18,7 +18,7 @@ export class LandingService {
   init = createEffect(() => {
     return this.actions.pipe(
       ofType(rdxLandingInit),
-      delay(999),
+      delay(9999),
       mergeMap(ac => {
         let dispatchs: IDispatch<null>[] = [
 
@@ -56,7 +56,7 @@ export class LandingService {
   heroHalfSlideTwo = createEffect(() => {
     return this.actions.pipe(
       ofType(rdxLandingHeroHalfSlideTwo),
-      delay(1999),
+      delay(19999),
       map(ac => {
         let dispatch: IDispatch<null> = {
           type: RDX_LANDING_HERO_HALF_SLIDE_THREE
@@ -80,7 +80,7 @@ export class LandingService {
   heroHalfSlideFour = createEffect(() => {
     return this.actions.pipe(
       ofType(rdxLandingHeroHalfSlideFour),
-      delay(999),
+      delay(9999),
       map(ac => {
         let dispatch: IDispatch<null> = {
           type: RDX_LANDING_HERO_HALF_SLIDE_ONE

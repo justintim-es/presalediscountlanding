@@ -40,13 +40,14 @@ export class RegisterComponent implements OnDestroy {
   isSecondPasswordFetchError: SubscriptionLike;
   fetchErrorMessage: Observable<string>;
   // isFetchError: Observable<boolean>;
-
+  selectedCountry: string;
   firstHide: boolean;
   secondHide: boolean;
   constructor(
     private store: Store,
     private router: Router
   ) {
+    this.selectedCountry = "nl"
     this.companyName = '';
     this.companyNameFormControl = new FormControl('', [
       Validators.required
@@ -95,16 +96,17 @@ export class RegisterComponent implements OnDestroy {
   }
 
   register() {
-    this.emailFormControl.setErrors({ backend: false });
-    this.firstPasswordFormControl.setErrors({ backend: false });
-    this.secondPasswordFormControl.setErrors({ backend: false })
+    // this.emailFormControl.setErrors({ backend: false });
+    // this.firstPasswordFormControl.setErrors({ backend: false });
+    // this.secondPasswordFormControl.setErrors({ backend: false })
     this.store.dispatch<IDispatch<IRegisterFetch>>({
       type: RDX_REGISTER_FETCH,
       payload: {
         company_name: this.companyName,
         e_mail: this.email,
         first_password: this.firstPassword,
-        second_password: this.secondPassword
+        second_password: this.secondPassword,
+        country: this.selectedCountry
       }
     })
   }

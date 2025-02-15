@@ -1,0 +1,22 @@
+<mat-toolbar routerLink="/" color="accent">
+    <button mat-icon-button>
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</mat-toolbar>
+<section class="hero is-black is-bold" @enterFromLeft>
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title has-text-white">
+                {{ '€ ' + (value - discount) + ' => € ' + value}}
+            </p>
+        </div>
+    </div>
+    <div class="hero-foot">
+        <div class="container has-text-right">
+            <p class="subtitle is-size-7">
+                {{ 'You will pay € ' + (value - discount) + ' for a voucher with a value of € ' + value }}
+            </p>
+        </div>
+    </div>
+</section>
+<button mat-raised-button style="min-width: 100%;" color="accent" @enterFromRight routerLink="{{ '/demo/demo-buy/' + value + '/' + discount }}">buy</button>

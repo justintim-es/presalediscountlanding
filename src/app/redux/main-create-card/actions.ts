@@ -23,3 +23,7 @@ export const RDX_MAIN_CREATE_CARD_ROUTE_BACK = 'RDX_MAIN_CREATE_CARD_ROUTE_BACK'
 export const rdxMainCreateCardRouteBack = createAction(
     RDX_MAIN_CREATE_CARD_ROUTE_BACK
 )
+export const RDX_MAIN_CREATE_CARD_RESET = 'RDX_MAIN_CREATE_CARD_RESET';
+export const rdxMainCreateCardReset = createAction(
+    RDX_MAIN_CREATE_CARD_RESET
+)

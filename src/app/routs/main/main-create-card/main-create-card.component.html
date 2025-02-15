@@ -1,23 +1,23 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button routerLink="/main" class="has-text-white">
+<mat-toolbar color="accent">
+    <button mat-icon-button routerLink="/main" class="has-text-black">
         <mat-icon>arrow_back</mat-icon>
     </button>
 </mat-toolbar>
-<section class="hero is-fullheight-with-navbar is-white">
+<section class="hero is-fullheight-with-navbar is-black">
     <div class="hero-body">
         <div class="container has-text-centered">
-            <p class="title has-text-primary">Create card</p>
-            <mat-form-field style="min-width: 100%" @enterFromLeft *ngIf="!(isFetchSuccess | async)">
+            <p class="title has-text-white">Create Voucher</p>
+            <mat-form-field style="min-width: 100%" @enterFromLeft *ngIf="!(isFetchSuccess | async)" color="accent">
                 <mat-label>Value</mat-label>
                 <input matInput [(ngModel)]="value" [formControl]="valueFormControl" [errorStateMatcher]="errorStateMatcher" />
             </mat-form-field>
-            <mat-form-field style="min-width: 100%" @enterFromRight *ngIf="!(isFetchSuccess | async)">
+            <mat-form-field style="min-width: 100%" @enterFromRight *ngIf="!(isFetchSuccess | async)" color="accent">
                 <mat-label>Discount</mat-label>
                 <input matInput [(ngModel)]="discount" [formControl]="discountFormControl" [errorStateMatcher]="errorStateMatcher" />
                 <mat-error *ngIf="discountFormControl.hasError('required')"></mat-error>
             </mat-form-field>
-            <button mat-raised-button color="primary" class="has-text-white" style="min-width: 100%;" *ngIf="!(isFetch | async)" (click)="fetch()">create</button>
-            <div class="spinner spinner-border spinner-border-sm has-text-primary" *ngIf="isFetch | async"></div>
+            <button mat-raised-button color="accent" class="has-text-black" style="min-width: 100%;" *ngIf="!(isFetch | async)" (click)="fetch()">create</button>
+            <div class="spinner spinner-border spinner-border-sm has-text-white" *ngIf="isFetch | async"></div>
         </div>
     </div>
 </section>

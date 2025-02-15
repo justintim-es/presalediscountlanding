@@ -1,0 +1,19 @@
+<section class="hero is-fullheight is-black is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="heading">balance</p>
+            <p class="title">
+                {{ '€ ' + ((balance | async)! / 100).toFixed(2) }}
+            </p>
+            <div class="spinner spinner-border spinner-border-sm" *ngIf="isLatestFetch | async"></div>
+            <!-- <p class="subtitle" *ngIf="isLatestFetchSuccess| async">
+                this is your latest card
+            </p> -->
+            <div *ngIf="!(isLatestFetch | async) && (isLatestFetchError | async)">
+                <p class="subtitle">this not your latest card</p>
+                <button style="min-width: 100%;" mat-raised-button color="accent" (click)="resend()" >resend latest card to your email</button>
+            </div>
+
+        </div>
+    </div>
+</section>

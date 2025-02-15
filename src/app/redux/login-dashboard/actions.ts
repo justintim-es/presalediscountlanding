@@ -11,10 +11,14 @@ export const rdxLoginDashboardFetch = createAction(
     RDX_LOGIN_DASHBOARD_FETCH,
     props<IProps<ILoginDashboardFetch>>()
 )
+export interface ILoginDashboardFetchSuccess {
+    token: string;
+    id: number;
+}
 export const RDX_LOGIN_DASHBOARD_FETCH_SUCCESS = 'RDX_LOGIN_DASHBOARD_FETCH_SUCCESS';
 export const rdxLoginDashboardFetchSuccess = createAction(
     RDX_LOGIN_DASHBOARD_FETCH_SUCCESS,
-    props<IProps<string>>()
+    props<IProps<ILoginDashboardFetchSuccess>>()
 )
 export const RDX_LOGIN_DASHBOARD_FETCH_ERROR = 'RDX_LOGIN_DASHBOARD_FETCH_ERROR';
 export const rdxLoginDashboardFetchError = createAction(

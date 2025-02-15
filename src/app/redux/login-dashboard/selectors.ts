@@ -22,3 +22,7 @@ export const getLoginDashboardIsRouteThrough = createSelector(
     getLoginDashboardFeatureSelector,
     state => state.isRouteThrough
 )
+export const getLoginDashboardId = createSelector(
+    getLoginDashboardFeatureSelector,
+    state => state.id
+)

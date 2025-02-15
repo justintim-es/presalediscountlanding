@@ -1,0 +1,49 @@
+<mat-toolbar color="accent" routerLink="/">
+    <button mat-icon-button>
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</mat-toolbar>
+<section class="hero is-halfheight is-black is-bold" [@heroHalfSlide]="topState | async" *ngIf="isTop | async">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title has-text-white is-size-3" @enterFromTopText [@electrocutePresaleDiscount]="PDState | async">presale.discount</p>
+        </div>
+    </div>
+</section>
+<section class="hero is-halfheight is-black is-bold" [@heroHalfSlide]="bottomState | async" *ngIf="isBottom | async">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title has-text-white is-size-3" [@electrocutePresaleDiscount]="PDState | async">presale.discount</p>
+        </div>
+    </div>
+</section>
+<section class="hero is-halfheight is-black is-bold">
+    <div class="hero-head">
+        <mat-form-field style="min-width:100%" color="accent">
+            <mat-label>Companyname or company code</mat-label>
+        <input type="text" matInput [formControl]="searchvalueformcontrol" [(ngModel)]="searchvalue" [errorStateMatcher]="errormatcher">
+        <button mat-icon-button matSuffix (click)="search()" *ngIf="!(isFetch | async)">
+            <mat-icon color="accent">search</mat-icon>
+        </button>
+        <div class="spinner spinner-border spinner-border-sm m-1" matSuffix *ngIf="isFetch | async"></div>
+        </mat-form-field>
+        <section class="hero is-black is-bold" *ngFor="let search of (searches | async)" routerLink="{{ '/buy/' + search.id }}">
+            <div class="hero-head">
+                <div class="container has-text-left">
+                    <p class="title">
+                        {{ capitalizeFirstLetter(search.company_name) }}
+                    </p>
+                </div>
+            </div>
+            
+        </section>
+        <!-- <ul>
+            <li *ngFor="let search of (searches | async)" routerLink="{{ '/buy/' + search.id }}">
+                {{ capitalizeFirstLetter(search.company_name) }}
+            </li>
+          </ul> -->
+          <p class="title has-text-centered" *ngIf="(searches | async)!.length == 0 && (isFetchSuccess | async)">
+            No shops for search
+        </p>
+    </div>
+</section>

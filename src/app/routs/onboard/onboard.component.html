@@ -1,0 +1,9 @@
+<section class="hero is-fullheight is-black is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="spinner spinner-border has-text-white" *ngIf="isFetch | async"></div>
+            <p class="title has-text-white" *ngIf="isFetchSuccess | async">Your account is ready for usage</p>
+            <button mat-raised-button color="accent" routerLink="/login-dashboard" *ngIf="isFetchSuccess | async" style="min-width: 100%;" class="has-text-black">login</button>
+        </div>
+    </div>
+</section>

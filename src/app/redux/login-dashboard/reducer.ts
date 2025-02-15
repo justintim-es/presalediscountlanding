@@ -7,13 +7,15 @@ export interface ILoginDashboardReducer {
     isFetchError: boolean;
     fetchErrorMessage: string;
     isRouteThrough: boolean;
+    id: number;
 }
 export const loginDashboardInitial: ILoginDashboardReducer = {
     isFetch: false,
     isFetchSuccess: false,
     isFetchError: false,
     fetchErrorMessage: '',
-    isRouteThrough: false
+    isRouteThrough: false,
+    id: 0
 }
 export const loginDashboardReducer = createReducer(
     loginDashboardInitial,
@@ -26,11 +28,12 @@ export const loginDashboardReducer = createReducer(
             fetchErrorMessage: ''
         }
     }),
-    on(rdxLoginDashboardFetchSuccess, (state: ILoginDashboardReducer) => {
+    on(rdxLoginDashboardFetchSuccess, (state: ILoginDashboardReducer, action) => {
         return {
             ...state,
             isFetch: false,
-            isFetchSuccess: true
+            isFetchSuccess: true,
+            id: action.payload!.id
         }
     }),
     on(rdxLoginDashboardFetchError, (state: ILoginDashboardReducer, action) => {

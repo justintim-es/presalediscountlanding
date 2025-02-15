@@ -1,19 +1,31 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="accent">
     <button mat-button>
-        <p class="title has-text-white">
+        <p class="title has-text-black">
             {{ companyName | async }}
         </p>
     </button>
 </mat-toolbar>
-        <section class="hero is-quarter is-white is-bold" *ngFor="let card of (cards | async)">
-            <div class="hero-body">
-                <div class="container has-text-centered">
-                    <p class="title has-text-primary">
-                        {{ '€ ' + (card.value -  card.discount) + ' => € ' + (card.value) }}
-                    </p>
-                </div>
+
+	<div *ngFor="let card of (cards | async)">
+	<section class="hero is-black is-bold"  @enterFromLeft>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title has-text-white">
+                    {{ '€ ' + ((card.value / 100) -  (card.discount / 100)) + ' => € ' + (card.value / 100) }}
+                </p>
             </div>
-            <div class="hero-foot">
-                <button mat-raised-button color="primary" class="has-text-white" style="min-width: 100%;">BUY WITH ETH</button>
+        </div>
+        <div class="hero-foot">
+            <div class="container has-text-right">
+                <p class="subtitle is-size-7">
+                    {{ 'You will pay € ' + ((card.value / 100)  - (card.discount / 100)) + ' for a voucher with a value of € ' + (card.value / 100) }}
+                </p>
             </div>
-        </section>
+        </div>
+    </section>
+                <button mat-raised-button color="accent" class="has-text-black" @enterFromRight style="min-width: 100%;" routerLink="{{ '/buy-card/' + id + '/' + card.id  }}">buy</button>
+
+	</div>
+    
+
+        

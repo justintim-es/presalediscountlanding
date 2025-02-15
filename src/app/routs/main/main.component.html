@@ -1,77 +1,119 @@
-<mat-toolbar color="primary" *ngIf="!(isMenu | async)">
+<mat-toolbar color="accent" *ngIf="!(isMenu | async)">
     <mat-toolbar-row>
         <button mat-button>
-            <p class="title has-text-white">
+            <p class="title has-text-black">
                 Dashboard
             </p>
         </button>
         <span class="toolbar-spacer"></span>
-        <button mat-icon-button class="has-text-white"  *ngIf="isMenu | async"  (click)="menuToggle()">
+        <button mat-icon-button class="has-text-black"  *ngIf="isMenu | async"  (click)="menuToggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        <button mat-icon-button class="has-text-white"  *ngIf="!(isMenu | async)" (click)="menuToggle()">
+        <button mat-icon-button class="has-text-black"  *ngIf="!(isMenu | async)" (click)="menuToggle()">
             <mat-icon>close</mat-icon>
         </button>
     </mat-toolbar-row>
     <mat-toolbar-row>
         <button mat-button>
-            <p class="title is-size-5 has-text-white">
+            <p class="title is-size-5 has-text-black">
                 Cards
             </p>
         </button>
     </mat-toolbar-row>
-    <mat-toolbar-row routerLink="/main/main-eth">
+    <mat-toolbar-row routerLink="/main/login-qr">
         <button mat-button >
-            <p class="title is-size-5 has-text-white">
-                ETH
+            <p class="title is-size-5 has-text-black">
+                Login code  
+            </p>
+        </button>
+        </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="isLoginFetch | async">
+        <div class="spinner spinner-border spinner-border-sm"></div>
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="isLoginFetchSuccess | async">
+        <a mat-button href="{{ login | async }}">
+            <p class="title is-size-5 has-text-black">
+                Stripe Dashboard
+            </p>
+        </a>
+    </mat-toolbar-row>
+    <mat-toolbar-row><a href="{{ 'https://backend.presale.discount/flyer/' + (id | async)}}" target="_blank" mat-button><p class="title is-size-5 has-text-black">Download Flyer</p></a></mat-toolbar-row>
+    <mat-toolbar-row routerLink="{{ '/buy/' + (id | async) }}">
+        <button mat-button >
+            <p class="title is-size-5 has-text-black">
+                Store
             </p>
         </button>
     </mat-toolbar-row>
-
 </mat-toolbar>
-<mat-toolbar color="primary" *ngIf="(isMenu | async)">
+<mat-toolbar color="accent" *ngIf="(isMenu | async)">
         <button mat-button>
-            <p class="title has-text-white">
+            <p class="title has-text-black">
                 Dashboard
             </p>
         </button>
         <span class="toolbar-spacer"></span>
-        <button mat-icon-button class="has-text-white"  *ngIf="isMenu | async"  (click)="menuToggle()">
+        <button mat-icon-button class="has-text-black"  *ngIf="isMenu | async"  (click)="menuToggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        <button mat-icon-button class="has-text-white"  *ngIf="!(isMenu | async)" (click)="menuToggle()">
+        <button mat-icon-button class="has-text-black"  *ngIf="!(isMenu | async)" (click)="menuToggle()">
             <mat-icon>close</mat-icon>
         </button>
 
 </mat-toolbar>
-<section class="hero is-white is-fullheight-with-navbar is-bold">
-    <section class="is-quarter is-white">
+
+<section class="hero is-black is-fullheight-with-navbar is-bold" *ngIf="isFetch | async">
+    <!-- <section class="hero is-black">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <p class="title has-text-primary">
                     <button mat-button color="primary">
-                        <p class="title has-text-primary" routerLink="/main/main-create-card">
+                        <p class="title has-text-white" routerLink="/main/main-create-card">
                             Create card
                         </p>
                     </button>
                 </p>
             </div>
         </div>
-    </section>
-    <section class="is-quarter is-white is-bold" *ngFor="let card of (cards | async)">
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <p class="title has-text-primary">
-                    {{ '€ ' +(card.value - card.discount) + ' => € ' + card.value}}
-                </p>
-            </div>
-        </div>
-    </section>
+    </section> -->
+    
     <div class="hero-body" *ngIf="isFetch | async">
         <div class="container has-text-centered">
-            <div class="spinner spinner-border has-text-primary"></div>
+            <div class="spinner spinner-border has-text-white"></div>
         </div>
+    </div>
+    <div class="hero-foot">
     </div>
     <!-- <section class="is-quarter is-white" *ngFor="let card of (cards | async)">
     </section> -->
 </section>
+<div *ngIf="isFetchSuccess | async">
+    <div  *ngFor="let card of (cards | async)">
+<section class="hero is-black is-bold" routerLink="{{ '/main/main-card/' + card.id }}" @enterFromLeft>
+    <!-- <div class="hero-head">
+        <mat-icon class="has-text-left">menu</mat-icon>
+    </div> -->
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title has-text-white">
+                    {{ '€ ' + ((card.value / 100) - (card.discount / 100)) + ' => € ' + (card.value / 100) }}
+                </p>
+            </div>
+        </div>
+        <div class="hero-foot">
+            
+        </div>
+    </section>       
+    <mat-toolbar @enterFromRight color="accent">
+        <div  *ngIf="!(isVisibleFetch | async)">
+            {{ (card.is_visible) ? "This voucher is visible in your store" : "This voucher is not visible in your store" }}
+        </div>
+        <div class="spinner spinner-border spinner-border-sm" *ngIf="isVisibleFetch | async"></div>
+        <span class="toolbar-spacer"></span>
+        <mat-slide-toggle [checked]="card.is_visible" color="accent" (change)="visibility(card.id)"></mat-slide-toggle>
+    </mat-toolbar>
+</div>
+     <mat-toolbar color="accent" style="position: fixed; bottom: 0px;"> <span class="toolbar-spacer"></span> <button mat-button routerLink="/main/main-create-card">create voucher</button></mat-toolbar>
+</div>
+
+

@@ -25,10 +25,10 @@ export const heroHalfSlide = trigger('heroHalfSlide', [
     state('right', style({
         transform: 'translateX(100%)',
     })),
-    transition('prepared => right-absolute', animate(2000)),
-    transition('prepared => left-absolute', animate(2000)),
-    transition('left => invision', animate(2000)),
-    transition('right => invision', animate(2000))
+    transition('prepared => right-absolute', animate(20000)),
+    transition('prepared => left-absolute', animate(20000)),
+    transition('left => invision', animate(20000)),
+    transition('right => invision', animate(20000))
 ])
 
 export const enterFromTopText = trigger('enterFromTopText', [

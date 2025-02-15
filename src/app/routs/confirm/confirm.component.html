@@ -1,10 +1,11 @@
 <div class="is-clipped">
-    <section class="hero is-fullheight is-white is-bold" @enterFromBottom>
+    <section class="hero is-fullheight is-black is-bold" @enterFromBottom>
         <div class="hero-body">
-            <div class="spinner spinner-border has-text-primary" *ngIf="isFetch | async"></div>
             <div class="container has-text-centered">
-                <p class="title has-text-primary" *ngIf="isFetchSuccess | async">Your e-mail is confirmed</p>
-                <p class="title has-text-primary" *ngIf="isFetchError | async">
+                <div class="spinner spinner-border has-text-white" *ngIf="isFetch | async"></div>
+                <p class="title has-text-white" *ngIf="isFetchSuccess | async">To accept payments you need to pair with stripe</p>
+                <a mat-raised-button color="accent" style="min-width: 100%;" class="has-text-black" *ngIf="isFetchSuccess | async" href="{{ onboardLink | async }}">pair</a>
+                <p class="title has-text-white" *ngIf="isFetchError | async">
                     {{ fetchErrorMessage | async }}
                 </p>
             </div>

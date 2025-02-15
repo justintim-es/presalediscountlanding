@@ -1,42 +1,80 @@
-<section class="hero is-halfheight is-white is-bold" [@heroHalfSlide]="topState | async" *ngIf="isTop | async">
+<section class="hero is-halfheight is-black is-bold" [@heroHalfSlide]="topState | async" *ngIf="isTop | async">
     <div class="hero-body">
-        <div class="container has-text-centered">
-            <p class="title has-text-primary is-size-1" @enterFromTopText [@electrocutePresaleDiscount]="PDState | async">presale.discount</p>
+        <div class="container has-text-centered is-clipped">
+            <p class="title has-text-white is-size-3" @enterFromTopText [@electrocutePresaleDiscount]="PDState | async">presale.discount</p>
+            <p class="subtitle" @enterFromBottom>We offer custom vouchers with a greater value than the purchase value.</p>
         </div>
     </div>
 </section>
-<section class="hero is-halfheight is-white is-bold" [@heroHalfSlide]="bottomState | async" *ngIf="isBottom | async">
+<section class="hero is-halfheight is-black is-bold" [@heroHalfSlide]="bottomState | async" *ngIf="isBottom | async">
     <div class="hero-body">
         <div class="container has-text-centered">
-            <p class="title has-text-primary is-size-1" [@electrocutePresaleDiscount]="PDState | async">presale.discount</p>
+            <p class="title has-text-white is-size-3" [@electrocutePresaleDiscount]="PDState | async">presale.discount</p>
+            <p class="subtitle">We offer custom vouchers with a greater value than the purchase value.</p>
         </div>
     </div>
 </section>
-<mat-toolbar color="primary">
+<mat-toolbar color="accent">
     <button mat-icon-button routerLink="/login-dashboard">
-        <mat-icon class="has-text-white" >monitor</mat-icon>
+        <mat-icon class="has-text-black" >monitor</mat-icon>
     </button>
     <span class="toolbar-spacer"></span>
+    <button mat-icon-button routerLink="/search">
+        <mat-icon>search</mat-icon>
+    </button>
+    <button mat-icon-button  routerLink="/pricing">
+	<mat-icon>request_quote</mat-icon>
+    </button>
     <button mat-button class="is-size-4" routerLink="/register">
-        <strong class="has-text-white">
+        <strong class="has-text-black">
             register shop
         </strong>
     </button>
 </mat-toolbar>
-<section class="hero is-halfheight is-white is-bold" [@heroHalfSlide]="topBelowState | async" *ngIf="isTopBelow | async">
+<section class="hero is-halfheight is-black is-bold" [@heroHalfSlide]="topBelowState | async" *ngIf="isTopBelow | async">
     <div class="hero-body">
         <div class="container has-text-centered">
-            <p class="title has-text-primary is-size-1">
+            <p class="title has-text-white is-size-3">
                 {{ firstBelowSlideValue | async }}
             </p>
         </div>
     </div>
 </section>
-<section class="hero is-halfheight is-white is-bold" [@heroHalfSlide]="bottomBelowState | async" *ngIf="isBottomBelow | async">
+<section class="hero is-halfheight is-black is-bold" [@heroHalfSlide]="bottomBelowState | async" *ngIf="isBottomBelow | async">
     <div class="hero-body">
         <div class="container has-text-centered">
-            <p class="title has-text-primary is-size-1">
+            <p class="title has-text-white is-size-3">
                 {{ secondBelowSlideValue | async }}
+            </p>
+        </div>
+    </div>
+</section>
+<section class="hero is-black is-halfheight is-bold">
+    <div class="hero-body">
+        <div class="container has-text-left">About us</div>
+        <p class="subtitle">
+            The idea of presale.discount is that by purchasing vouchers in advance, you receive extra credit. For example, buy a voucher for 90 euros at Pathé. With this voucher, you can then go to the cinema for 100 euros. The store gets its money earlier and offers extra discount in return.
+        </p>
+    </div>
+</section>
+<section class="hero is-black is-bold is-halfheight">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title">demo</p>
+            <mat-form-field style="min-width:100%" color="accent"><mat-label>value</mat-label><input [formControl]="demovalueformcontrol" [(ngModel)]="demovalue" matInput type="number"></mat-form-field>
+            <mat-form-field style="min-width:100%" color="accent"><mat-label>discount</mat-label><input [formControl]="demodiscountformcontrol" [(ngModel)]="demodiscount" matInput type="number"></mat-form-field>
+            <button mat-raised-button style="min-width: 100%;" color="accent" (click)="visit()">visit demo store</button>
+        </div>
+    </div>
+</section>
+<section class="hero is-halfheight is-black is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title has-text-white is-size-4">
+                {{ 'info@presale.discount' }}
+            </p>
+            <p class="subtitle has-text-white is-size-4">
+                {{ '+31683999377'}}
             </p>
         </div>
     </div>

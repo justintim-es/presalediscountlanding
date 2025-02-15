@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { IMainCreateCardFetch, rdxMainCreateCardFetch, rdxMainCreateCardFetchError, rdxMainCreateCardFetchSuccess, rdxMainCreateCardRouteBack } from "./actions";
+import { IMainCreateCardFetch, rdxMainCreateCardFetch, rdxMainCreateCardFetchError, rdxMainCreateCardFetchSuccess, rdxMainCreateCardReset, rdxMainCreateCardRouteBack } from "./actions";
 
 export interface IMainCreateCardReducer {
     isFetch: boolean;
@@ -46,5 +46,8 @@ export const mainCreateCardReducer = createReducer(
             ...state,
             isRouteBack: true
         }
+    }),
+    on(rdxMainCreateCardReset, () => {
+        return mainCreateCardInitial;
     })
 )

@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { electrocutePresaleDiscount, enterFromTopText, heroHalfSlide } from 'src/app/animations';
+import { electrocutePresaleDiscount, enterFromBottom, enterFromTopText, heroHalfSlide } from 'src/app/animations';
 import { IDispatch } from 'src/app/redux/interfaces';
 import { RDX_LANDING_HERO_HALF_SLIDE_ONE, RDX_LANDING_INIT, RDX_LANDING_PRESALE_DISCOUNT_IS_ALIVE_FALSE } from 'src/app/redux/landing/actions';
 import { getLandingBottomBelowState, getLandingBottomState, getLandingFirstBelowSlideValue, getLandingIsBottom, getLandingIsBottomBelow, getLandingIsTop, getLandingIsTopBelow, getLandingPDState, getLandingSecondBelowSlideValue, getLandingTopBelowState, getLandingTopState } from 'src/app/redux/landing/selectors';
@@ -13,7 +15,8 @@ import { getLandingBottomBelowState, getLandingBottomState, getLandingFirstBelow
   animations: [
     heroHalfSlide,
     enterFromTopText,
-    electrocutePresaleDiscount
+    electrocutePresaleDiscount,
+    enterFromBottom
   ]
 })
 export class LandingComponent implements OnInit, OnDestroy {
@@ -28,8 +31,13 @@ export class LandingComponent implements OnInit, OnDestroy {
   isBottomBelow: Observable<boolean>;
   firstBelowSlideValue: Observable<string>;
   secondBelowSlideValue: Observable<string>;
+  demovalue!: number;
+  demodiscount!: number;
+  demovalueformcontrol: FormControl
+  demodiscountformcontrol: FormControl;
   constructor(
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {
     this.PDState = this.store.select(getLandingPDState);
     this.topState = this.store.select(getLandingTopState);
@@ -42,6 +50,8 @@ export class LandingComponent implements OnInit, OnDestroy {
     this.isBottomBelow = this.store.select(getLandingIsBottomBelow);
     this.firstBelowSlideValue = this.store.select(getLandingFirstBelowSlideValue);
     this.secondBelowSlideValue = this.store.select(getLandingSecondBelowSlideValue);
+    this.demovalueformcontrol = new FormControl('', [Validators.required])
+    this.demodiscountformcontrol = new FormControl('', [Validators.required])
   }
   ngOnInit(): void {
     this.store.dispatch<IDispatch<any>>({
@@ -50,6 +60,11 @@ export class LandingComponent implements OnInit, OnDestroy {
     // this.store.dispatch<IDispatch<any>>({
     //   type: RDX_LANDING_HERO_HALF_SLIDE_ONE
     // })
+  }
+  visit() {
+    this.demodiscountformcontrol.markAsTouched();
+    this.demovalueformcontrol.markAsTouched();
+    if (!this.demodiscountformcontrol.hasError('required') && !this.demovalueformcontrol.hasError('required')) this.router.navigate([`/demo/${this.demovalue}/${this.demodiscount}`]);
   }
   ngOnDestroy(): void {
     this.store.dispatch<IDispatch<any>>({

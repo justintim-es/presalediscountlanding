@@ -96,9 +96,6 @@ export const landingReducer = createReducer(
         }
     }),
     on(rdxLandingPresaleDiscountIsAliveFalse, (state: ILandingReducer) => {
-        return {
-            ...state,
-            isAlive: false
-        }
+        return landingInitiail
     })
 )

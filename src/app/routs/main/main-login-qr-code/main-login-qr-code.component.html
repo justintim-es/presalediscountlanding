@@ -1,0 +1,18 @@
+<mat-toolbar color="accent">
+    <button routerLink="/main" mat-icon-button>
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</mat-toolbar>
+<section class="hero is-fullheight-with-navbar is-black is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <!-- <p class="title">Download the scan.presale.discount app and scan this QR code to redeem cards</p> -->
+            <p class="title">Use the code below when you try to redeem a card with scanning the QR code of a card.</p>
+            <p class="subtitle">You have to scan the QR code with a regular QR code scanner which can be found in the App or Play Store.</p>
+            <p class="title">
+                {{ code | async }}
+            </p>
+            <!-- <img src="{{ 'http://localhost:5083/qr/' + (code | async) }}"> -->
+        </div>
+    </div>
+</section>

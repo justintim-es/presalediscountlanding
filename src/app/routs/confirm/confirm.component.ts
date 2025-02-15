@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, SubscriptionLike } from 'rxjs';
 import { enterFromBottom } from 'src/app/animations';
 import { RDX_CONFIRM_FETCH } from 'src/app/redux/confirm/actions';
-import { getConfirmFetchErrorMessage, getConfirmIsFetch, getConfirmIsFetchError, getConfirmIsFetchSuccess, getConfirmIsRouteLoginTrue } from 'src/app/redux/confirm/selectors';
+import { getConfirmFetchErrorMessage, getConfirmIsFetch, getConfirmIsFetchError, getConfirmIsFetchSuccess, getConfirmIsRouteLoginTrue, getConfirmOnboardLink } from 'src/app/redux/confirm/selectors';
 import { IDispatch } from 'src/app/redux/interfaces';
 
 @Component({
@@ -21,9 +21,10 @@ export class ConfirmComponent implements OnInit {
 
   isFetch: Observable<boolean>;
   isFetchSuccess: Observable<boolean>;
+  onboardLink: Observable<string>;
   isFetchError: Observable<boolean>;
   fetchErrorMessage: Observable<string>;
-  isRouteLogin: SubscriptionLike;
+  // isRouteLogin: SubscriptionLike;
 
   constructor(
     private store: Store,
@@ -36,13 +37,14 @@ export class ConfirmComponent implements OnInit {
     })
     this.isFetch = this.store.select(getConfirmIsFetch);
     this.isFetchSuccess = this.store.select(getConfirmIsFetchSuccess);
+    this.onboardLink = this.store.select(getConfirmOnboardLink);
     this.isFetchError = this.store.select(getConfirmIsFetchError);
     this.fetchErrorMessage = this.store.select(getConfirmFetchErrorMessage);
-    this.isRouteLogin = this.store.select(getConfirmIsRouteLoginTrue).subscribe(res => {
-      if (res) {
-        this.router.navigate(['/login-dashboard']);
-      }
-    })
+    // this.isRouteLogin = this.store.select(getConfirmIsRouteLoginTrue).subscribe(res => {
+    //   if (res) {
+    //     this.router.navigate(['/login-dashboard']);
+    //   }
+    // })
   }
   ngOnInit() {
     this.store.dispatch<IDispatch<string>>({

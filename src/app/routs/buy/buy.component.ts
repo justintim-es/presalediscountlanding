@@ -2,13 +2,19 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, SubscriptionLike } from 'rxjs';
-import { IBuyCard, RDX_BUY_CARDS_FETCH, RDX_BUY_CARDS_FETCH_SUCCESS } from 'src/app/redux/buy/actions';
+import { RDX_BUY_CARDS_FETCH, RDX_BUY_CARDS_FETCH_SUCCESS } from 'src/app/redux/buy/actions';
 import { getBuyCards, getBuyCompanyName, getBuyFetchErrorMessage, getBuyIsFetch, getBuyIsFetchError, getBuyIsFetchSuccess } from 'src/app/redux/buy/selectors';
+import { enterFromLeft, enterFromRight } from 'src/app/animations';
+import { IBuyCard } from 'src/app/redux/interfaces';
 
 @Component({
   selector: 'app-buy',
   templateUrl: './buy.component.html',
-  styleUrls: ['./buy.component.css']
+  styleUrls: ['./buy.component.css'],
+  animations: [
+  	enterFromLeft,
+  	enterFromRight
+  ]
 })
 export class BuyComponent {
   sub: SubscriptionLike;

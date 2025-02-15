@@ -1,0 +1,39 @@
+<mat-toolbar color="accent">
+    <button mat-icon-button routerLink="{{ '/demo/' + value + '/' + discount}}">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</mat-toolbar>
+<section class="hero is-black is-bold is-fullheight-with-navbar">
+    <div class="hero-head p-6">
+        <div class="container has-text-centered">
+            <p class="title">
+                {{ '€ ' + (value - discount) + ' => € ' + value}}
+            </p>
+        </div>
+    </div>
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <mat-form-field color="accent" style="min-width:100%" @enterFromLeft><mat-label>E-Mail</mat-label><input matInput [formControl]="emailformcontrol" [(ngModel)]="email" type="text"></mat-form-field>
+            <mat-form-field color="accent" style="min-width:100%" @enterFromRight><mat-label>Confirm E-Mail</mat-label><input [formControl]="cemailformcontrol" [(ngModel)]="cemail" matInput type="text">
+                <mat-error *ngIf="cemailformcontrol.hasError('different')">
+                    {{ 'E-Mails are not the same'}}
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button style="min-width: 100%;" color="accent" *ngIf="!(isfetch | async)" (click)="proceed()">buy</button>
+            <div class="spinner spinner-border spinner-border-sm" *ngIf="isfetch | async"></div>
+            <p class="subtitle has-text-right is-size-6" *ngIf="isproceed">
+                {{ 'one voucher: € ' + (value -  discount) }} 
+             </p>
+              <hr *ngIf="isproceed">
+              <p class="subtitle has-text-right is-size-6" *ngIf="isproceed">{{ 'You will pay €' + (value -  discount + 1) + ' for a voucher with a value of €' + value + ', which you can redeem for as long as the shop uses presale.discount '   }}
+                <a *ngIf="isproceed" mat-raised-button style="min-width: 100%;" color="accent" class="has-text-black mb-4 mt-4" >buy</a>
+        </div>
+    </div>
+    <div class="hero-foot">
+        <div class="container has-text-centered">
+            <p class="subtitle">If you press the buy button you agree with our terms and conditions and privacy policy.</p>
+            <button mat-button routerLink="/terms">Terms and conditions</button>
+            <button mat-button routerLink="/privacy">Privacy policy</button>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,40 @@
+<section class="hero is-fullheight is-black is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered" *ngIf="isLatestFetch | async">
+            <div class="spinner spinner-border has-text-white"></div>
+        </div>
+        <div class="container has-text-centered" *ngIf="isLatestFetchSuccess | async">
+            <p class="title">
+                {{ 'Decrement the balance of € ' + ((balance | async)! / 100).toFixed(2) }}
+            </p>
+            <form [formGroup]="formgroup">
+                <mat-form-field style="min-width:100%" color="accent">
+                    <mat-label>Shop code</mat-label>
+                    <input matInput type="text" formControlName="shopcode" [(ngModel)]="shopcode" [errorStateMatcher]="errorStateMatcher">
+                    <mat-error *ngIf="formgroup.controls['shopcode'].hasError('backend')">
+                        {{ (deductFetchErrorMessage | async)!.message }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field style="width:100%" color="accent">
+                    <!-- <span matPrefix> &nbsp;€</span> -->
+                    <input matInput type="text" formControlName="cents" [(ngModel)]="cents" [errorStateMatcher]="errorStateMatcher">
+                    <mat-hint>Example: insert € 1 as 100</mat-hint>
+                    <mat-error *ngIf="formgroup.controls['cents'].hasError('backend')">
+                        {{ (deductFetchErrorMessage | async)!.message }}
+                    </mat-error>
+                    <!-- <span matSuffix>cents &nbsp;</span> -->
+                </mat-form-field>
+            </form>
+
+            <button mat-raised-button color="accent" style="min-width: 100%;" (click)="deduct()" *ngIf="!(isDeductFetch | async)">deduct</button>
+            <div class="spinner spinner-border spinner-border-sm" *ngIf="isDeductFetch | async"></div>
+        </div>
+        <div class="container has-text-centered" *ngIf="(isLatestFetchError | async) && !(isDeductFetchSuccess | async)">
+            <p class="title">this is not his / hers latest card</p>
+            <button mat-raised-button style="min-width: 100%;" color="accent" class="has-text-black" (click)="resend()">resend latest card to e-mail</button></div>
+        <div class="container has-text-centered" *ngIf="isDeductFetchSuccess | async">
+            <p class="title">The payment has been successfull!</p>
+        </div>
+            <!-- <div class="spinner spinner-border spinner-border-sm" *ngIf=""></div> -->
+    </div>
+</section>

@@ -1,0 +1,22 @@
+<mat-toolbar color="accent">
+    <button mat-icon-button routerLink="/login-dashboard">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</mat-toolbar>
+<section class="hero is-fullheight-with-navbar is-black is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <mat-form-field style="min-width:100%" color="accent" *ngIf="!(isFetchSuccess | async)">
+                <mat-label>E-Mail</mat-label>
+                <input matInput type="text" [formControl]="emailformcontrol" [(ngModel)]="email">
+            </mat-form-field>
+            <button mat-raised-button style="min-width: 100%;" color="accent" *ngIf="!(isFetch | async) && !(isFetchSuccess | async)" (click)="reset()" >
+            send password reset link
+            </button>
+            <div class="spinner spinner-border spinner-border-sm" *ngIf="isFetch | async"></div>
+            <p class="title" *ngIf="isFetchSuccess | async">
+                If your e-mail is known to us, a reset password mail has been sent to your e-mail.
+            </p>
+        </div>
+    </div>
+</section>

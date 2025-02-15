@@ -6,3 +6,7 @@ export const getTokenToken = createSelector(
     getTokenFeatureSelector,
     state => state.token
 )
+export const getTokenHas = createSelector(
+	getTokenFeatureSelector,
+	state => state.has
+)
